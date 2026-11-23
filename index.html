@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Bruno e Clarissa em 12 dias pelo litoral oeste do Cear&aacute;, de Fortaleza a Jericoacoara, de EcoSport.">
+<meta name="description" content="Um casal em 12 dias pelo litoral oeste do Cear&aacute;, de Fortaleza a Jericoacoara, de EcoSport.">
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px system-ui,sans-serif}
@@ -307,10 +307,6 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.85rem}
     <div>
       <div class="eyebrow">Costa do Sol Poente · Ceará · março de 2027</div>
       <h1 class="logo"><span class="logo-a">CASAL</span> <span class="logo-b">na Estrada</span></h1>
-      <div class="crew">
-        <div class="avatars" id="avatars"></div>
-        <div class="crew-names" id="names">Bruno &amp; Clarissa</div>
-      </div>
       <p class="lede">12 dias de EcoSport branco pela CE-085, de Fortaleza até Jericoacoara, parando em 10 praias.</p>
     </div>
     <div class="hero-side">
@@ -329,7 +325,7 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.85rem}
   <section class="wrap" id="rota">
     <div class="sec-head cam-head"><div><div class="eyebrow">A rota</div>
     <h2>De Fortaleza a Jeri, praia a praia</h2></div><figure class="cam">
-      <video src="casal-carro.mp4" poster="casal-carro.webp" autoplay muted loop playsinline preload="auto" aria-label="Bruno dirigindo o EcoSport e Clarissa no banco do passageiro, com a praia ao fundo"></video>
+      <video src="casal-carro.mp4" poster="casal-carro.webp" autoplay muted loop playsinline preload="auto" aria-label="O casal no EcoSport, com a praia ao fundo"></video>
       <figcaption class="cam-tag"><i></i>REC · Câmera do painel</figcaption>
     </figure></div>
     <div class="console">
@@ -432,7 +428,6 @@ footer{padding-block:2rem 3rem;color:var(--muted);font-size:.85rem}
 <script>
 /* ===== Configuração da viagem: mude aqui ===== */
 const TRIP = {
-  names: ["Bruno", "Clarissa"],
   startDate: "2027-03-12",    // saída marcada
   days: 12,
   origin: { name: "Fortaleza", lat: -3.732, lon: -38.527 },
@@ -831,8 +826,8 @@ function drawSat(hereIdx){
     // logo abaixo de Fortaleza
     const cx = home[0] - 40, cy = home[1] + 85;
     g += carTop(cx, cy, 1);
-    g += photoBubble("bruno.jpg", cx - 108, cy, 34, "pb1");
-    g += photoBubble("clarissa.jpg", cx + 108, cy, 34, "pb2");
+    g += photoBubble("foto-1.jpg", cx - 108, cy, 34, "pb1");
+    g += photoBubble("foto-2.jpg", cx + 108, cy, 34, "pb2");
     g += `<rect class="sat-pit" x="${f1(cx - 70)}" y="${f1(cy + 48)}" width="140" height="38" rx="3"/>
       <text class="sat-pit-text" x="${f1(cx)}" y="${f1(cy + 74)}">PARTIDA</text>`;
   }
@@ -918,8 +913,8 @@ function setupSat(){
 const input = $("#startDate");
 input.value = loadDate() || "";
 input.addEventListener("change", () => { saveDate(input.value); render(); });
-$("#names").textContent = `${TRIP.names[0]} & ${TRIP.names[1]}`;
-$("#avatars").innerHTML = `<img src="bruno.jpg" alt="Bruno" width="64" height="64"><img src="clarissa.jpg" alt="Clarissa" width="64" height="64">`;
+
+
 setupSat();
 render();
 </script>
