@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Bruno e Clarissa em 12 dias pelo litoral oeste do Cear&aacute;, de Fortaleza a Jericoacoara, de EcoSport.">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Casal na Estrada</title>
+</head>
+<body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Anton&family=Yellowtail&display=swap">
+<style>
+/* Layout: coluna única como um diário de bordo — abertura com contagem, mapa da costa, roteiro por dia, carro e avisos. */
+/* Visual único, escuro: azul-noite com granulado, como uma transmissão de estrada. */
+:root{
+  color-scheme:dark;
+  --bg:#0a1530;        /* azul-noite */
+  --surface:#111f42;
+  --ink:#eaf1ff;
+  --muted:#97a9cc;
+  --line:#22355f;
+  --sea:#62cde4;
+  --sea-soft:#16295a;
+  --land:#3a3427;
+  --sun:#ffc547;
+  --coral:#ff7a5c;
+  --map-sea:#1d4f7a;--map-wave:#2d6a96;--map-beach:#6e6448;--map-land:#2f5236;--map-dune:#6b5f40;
+  --car:#eef2f4;
+  --pink:#f58bb8;
+  --c-bg:#070f26;--c-panel:#0e1b3c;--c-edge:#f3a6c6;--c-line:#213664;--c-ink:#eef3ff;--c-muted:#90a3c9;
+  --c-yellow:#ffd23f;--c-mint:#8ff0d8;
+  --map-trunk:#a88a62;--map-leaf:#6fb56f;--map-road:#8a979c;--map-road-edge:#c2ccd0;--map-road-line:#1d2a2f;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  background-color:var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,.35),transparent 60%),
+    radial-gradient(1px 1px at 70% 80%,rgba(255,255,255,.25),transparent 60%),
+    radial-gradient(1200px 600px at 15% -10%,#1b3270 0%,transparent 60%),
+    radial-gradient(900px 500px at 100% 40%,#14275c 0%,transparent 60%);
+  background-size:180px 180px,140px 140px,190px 190px,auto,auto;
+  background-attachment:fixed}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+section{padding-block:2.75rem}
+section + section{border-top:1px solid var(--line)}
+a{color:var(--sea)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
+
+/* Abertura */
+.hero{margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 3rem);padding-bottom:2.5rem;
+  background:linear-gradient(180deg,rgba(22,41,90,.55) 0%,transparent 100%)}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:end}
+.hero h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 .amp{color:var(--sun)}
+/* polaroids espalhadas */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.sec-head > div{min-width:0}
+.polaroid{flex:none;margin:-.5rem .5rem 0 0;width:160px;background:#fbfaf7;padding:8px 8px 0;border-radius:3px;box-shadow:0 12px 28px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.3);transform:rotate(var(--r,3deg));transition:transform .25s}
+.polaroid:hover{transform:rotate(0deg) scale(1.06)}
+.polaroid .ph{aspect-ratio:1;overflow:hidden;background:#111}
+.polaroid img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(var(--z,1));transform-origin:var(--o,50% 50%)}
+.polaroid figcaption{font-family:"Yellowtail","Brush Script MT",cursive;font-size:1.25rem;color:#2a2a2a;text-align:center;padding:.25rem 0 .45rem;line-height:1.2}
+@media (max-width:600px){.polaroid{width:104px;padding:6px 6px 0}.polaroid figcaption{font-size:.95rem}}
+@media (prefers-reduced-motion:reduce){.polaroid{transition:none}}
+.cam-head{align-items:center}
+.cam-head .cam{width:min(440px,46%);flex:none}
+@media (max-width:700px){.cam-head{flex-direction:column;align-items:stretch}.cam-head .cam{width:100%}}
+.hero-side{display:grid;gap:14px}
+.cam{position:relative;margin:0;border:2px solid var(--c-edge);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cam img,.cam video{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:50% 45%}
+.cam-tag{position:absolute;left:10px;top:10px;display:flex;align-items:center;gap:.4rem;background:rgba(0,0,0,.6);color:#fff;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .6rem;border-radius:99px}
+.cam-tag i{width:8px;height:8px;border-radius:50%;background:#ff3b3b;display:inline-block}
+@media (prefers-reduced-motion:no-preference){.cam-tag i{animation:rec 1.2s steps(2) infinite}@keyframes rec{50%{opacity:.15}}}
+.logo{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em .3em;line-height:1}
+.logo-a{font-family:"Anton","Impact","Arial Narrow",sans-serif;font-weight:400;letter-spacing:.02em;color:var(--ink);font-size:clamp(3rem,10vw,5.6rem)}
+.logo-b{font-family:"Yellowtail","Brush Script MT",cursive;font-weight:400;color:var(--pink);font-size:clamp(2.4rem,8vw,4.4rem);transform:rotate(-4deg);display:inline-block}
+
+/* Console da rota: mapa satélite + painel */
+.console{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:16px;margin-top:1.25rem;padding:14px;border-radius:18px;background:var(--c-bg)}
+.sat-wrap{position:relative;border:2px solid var(--c-edge);border-radius:14px;overflow:hidden;background:#0b2a44;min-height:280px}
+.sat-view{position:absolute;inset:0;overflow:auto;cursor:grab;scrollbar-width:thin;touch-action:pan-x pan-y}
+.sat-view.drag{cursor:grabbing}
+.sat-stage{position:relative;width:100%;aspect-ratio:8/7}
+.sat-stage img,.sat-stage svg{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
+.sat-stage img{object-fit:cover;object-position:50% 0}
+.sat-ui{position:absolute;z-index:2;display:flex;gap:6px}
+.sat-badge{top:12px;left:12px;align-items:center;background:var(--pink);color:#2a0f1c;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .75rem;border-radius:99px;border:2px solid #2a0f1c}
+.sat-badge i{width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block}
+.sat-badge small{opacity:.7;font-weight:500}
+.sat-toggle{top:12px;right:62px;background:#fff;border-radius:99px;padding:3px;border:2px solid #10161a}
+.sat-toggle button,.sat-zoom button{font:600 .78rem var(--body);border:0;cursor:pointer}
+.sat-toggle button{padding:.3rem .8rem;border-radius:99px;background:transparent;color:#10161a}
+.sat-toggle button[aria-pressed="true"]{background:#10161a;color:var(--c-yellow)}
+.sat-zoom{top:12px;right:12px;flex-direction:column;gap:0}
+.sat-zoom button{width:36px;height:36px;background:#10161a;color:#fff;font-size:1.3rem;line-height:1}
+.sat-zoom button:first-child{border-radius:8px 8px 0 0;border-bottom:1px solid #333}
+.sat-zoom button:last-child{border-radius:0 0 8px 8px}
+.sat-credit{position:absolute;right:8px;bottom:6px;z-index:2;font-size:.62rem;color:#dfe8ea;background:rgba(0,0,0,.55);padding:.15rem .45rem;border-radius:6px}
+.sat-credit a{color:#fff}
+.illu-view{position:absolute;inset:0;overflow:auto;background:var(--surface)}
+.illu-view{display:flex;align-items:center}
+.sat-view[hidden],.illu-view[hidden]{display:none!important}
+@media (max-width:600px){
+  .sat-toggle{top:auto;right:auto;bottom:34px;left:10px}
+  .sat-badge small{display:none}
+  .sat-badge{font-size:.62rem;max-width:calc(100% - 70px)}
+  .sat-credit{font-size:.55rem;left:8px;right:8px;text-align:right}
+}
+.illu-view svg{display:block;min-width:720px;width:100%;height:auto}
+.sat-route{fill:none;stroke:#46e6f2;stroke-width:6;stroke-linejoin:round;stroke-linecap:round}
+.sat-route-glow{fill:none;stroke:rgba(0,30,40,.55);stroke-width:12;stroke-linejoin:round;stroke-linecap:round}
+.sat-back{fill:none;stroke:#ffffff;stroke-width:3.5;stroke-dasharray:3 12;stroke-linecap:round;opacity:.8}
+.sat-flag-pole{stroke:#e9fbff;stroke-width:3}
+.sat-flag{fill:#46e6f2;stroke:#06323a;stroke-width:1.5}
+.sat-leader{stroke:#e9fbff;stroke-width:2;opacity:.85}
+.sat-box{fill:#a8f0dc;stroke:#06323a;stroke-width:2.5}
+.sat-box.end{fill:var(--c-yellow)}
+.sat-box-text{font-family:"JetBrains Mono",monospace;font-size:21px;font-weight:700;fill:#06323a;letter-spacing:.06em;text-anchor:middle}
+.sat-pit{fill:var(--pink);stroke:#2a0f1c;stroke-width:2.5}
+.sat-pit-text{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:700;fill:#2a0f1c;letter-spacing:.1em;text-anchor:middle}
+
+.panel{background:var(--c-panel);border:2px solid var(--c-edge);border-radius:14px;color:var(--c-ink);display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.panel-block{padding:16px 18px}
+.panel-block + .panel-block{border-top:1px solid var(--c-line)}
+.p-eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink)}
+.p-eyebrow.alt{color:var(--c-mint)}
+.p-title{font-family:"Anton","Impact",sans-serif;font-weight:400;font-size:1.9rem;letter-spacing:.02em;color:var(--pink);margin:.35rem 0 .2rem;text-transform:uppercase;line-height:1.05}
+.p-sub{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c-muted)}
+.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;margin-top:12px}
+.p-stats .stat{background:none;padding:0}
+.p-stats .stat span{display:block;order:-1;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c-muted)}
+.p-stats .stat{display:flex;flex-direction:column}
+.p-stats .stat b{font-family:"Anton","Impact",sans-serif;font-weight:400;font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.p-stats .stat:nth-child(1) b{color:var(--c-yellow)}
+.p-stats .stat:nth-child(2) b{color:var(--c-mint)}
+.p-stats .stat:nth-child(3) b{color:var(--pink)}
+.p-stats .stat:nth-child(4) b{color:#8ef08a}
+.hazard{height:8px;background:repeating-linear-gradient(-45deg,var(--c-yellow) 0 10px,#111 10px 20px);flex:none}
+.p-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.p-list button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:2rem 1fr;align-items:center;gap:.4rem;padding:.28rem .4rem;border-radius:6px;cursor:pointer;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--c-ink)}
+.p-list button:hover,.p-list button:focus-visible{background:var(--c-line);outline:none}
+.p-list .n{color:var(--c-muted);font-weight:500}
+.p-list .uf{color:var(--c-muted);font-weight:500}
+.p-list .here{color:var(--c-yellow)}
+.p-foot{display:flex;gap:.7rem;align-items:center;background:var(--c-bg);padding:14px 18px;font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--c-yellow);text-transform:uppercase;letter-spacing:.03em;margin-top:auto}
+.p-foot svg{flex:none}
+@media (min-width:861px){
+  .sat-wrap{aspect-ratio:8/7;align-self:start;min-height:0}
+  .panel{contain:size;overflow:auto;scrollbar-width:thin}
+}
+@media (max-width:860px){
+  .console{grid-template-columns:1fr}
+  .sat-wrap{min-height:0;height:62vw;max-height:440px}
+}
+.hero p.lede{font-size:1.15rem;max-width:34ch;margin:.9rem 0 0;color:var(--muted)}
+.count{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem;display:grid;gap:.6rem}
+.count .big{font-family:var(--mono);font-weight:700;font-size:clamp(2.4rem,6vw,3.4rem);line-height:1;color:var(--sea);font-variant-numeric:tabular-nums}
+.count .big small{font-size:1rem;color:var(--muted);font-weight:500;margin-left:.35rem}
+.count label{font-size:.85rem;color:var(--muted)}
+.count input{font:inherit;padding:.45rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
+.status{font-weight:600}
+
+/* Números */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:2rem}
+.stat{background:var(--surface);padding:1rem 1.1rem}
+.stat b{display:block;font-family:var(--mono);font-size:1.7rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.85rem;color:var(--muted)}
+
+/* Mapa */
+.mapbox{margin-top:1.25rem;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.mapbox svg{display:block;min-width:720px;width:100%;height:auto}
+/* mapa plano, estilo ilustração */
+.map-sea{fill:var(--map-sea)}
+.map-wave{fill:none;stroke:var(--map-wave);stroke-width:2.5;stroke-linecap:round}
+.map-beach{fill:none;stroke:var(--map-beach);stroke-width:14;stroke-linejoin:round;stroke-linecap:round}
+.map-land{fill:var(--map-land)}
+.map-dune{fill:var(--map-dune)}
+.map-lagoon{fill:var(--map-sea)}
+.map-palm-trunk{stroke:var(--map-trunk);stroke-width:3;stroke-linecap:round;fill:none}
+.map-palm-leaf{fill:var(--map-leaf)}
+.map-road-casing{fill:none;stroke:var(--map-road-edge);stroke-width:12;stroke-linejoin:round;stroke-linecap:round}
+.map-road{fill:none;stroke:var(--map-road);stroke-width:8;stroke-linejoin:round;stroke-linecap:round}
+.map-road-center{fill:none;stroke:var(--map-road-line);stroke-width:1.6;stroke-dasharray:7 7;stroke-linejoin:round}
+.map-back{fill:none;stroke:var(--map-road-edge);stroke-width:3;stroke-dasharray:2 8;stroke-linecap:round}
+.map-pin{fill:var(--coral);stroke:var(--surface);stroke-width:2}
+.map-pin.here{fill:var(--sun)}
+.map-pin-hole{fill:var(--surface)}
+.map-num{font-family:var(--mono);font-size:10px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.map-label{font-family:var(--body);font-size:13px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round}
+.map-tag{fill:var(--sea)}
+.map-tag-text{font-family:var(--mono);font-size:10px;font-weight:700;fill:var(--surface);letter-spacing:.08em}
+.map-tick{stroke:var(--ink);stroke-width:1.5}
+.map-sea-label{font-family:var(--display);font-size:24px;font-weight:800;fill:var(--map-wave);letter-spacing:.25em}
+.map-note{font-family:var(--mono);font-size:11px;fill:var(--ink)}
+.map-shield{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}
+.map-shield-text{font-family:var(--mono);font-size:10px;font-weight:700;fill:var(--ink);text-anchor:middle}
+
+/* avatares */
+.crew{display:flex;align-items:center;gap:.9rem;margin-top:1rem}
+.avatars{display:flex}
+.avatars img{width:64px;height:64px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 2px 8px rgba(0,0,0,.15);object-fit:cover;background:var(--sea-soft)}
+.avatars img + img{margin-left:-14px}
+.crew-names{font-family:var(--display);font-weight:700;font-size:1.35rem}
+.caption{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+
+/* Roteiro */
+.days{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:0}
+.day{display:grid;grid-template-columns:5.5rem 1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:start}
+.day:first-child{border-top:1px solid var(--line)}
+.day .when{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:1.35}
+.day .when b{display:block;font-size:1.05rem;color:var(--ink)}
+.day h3{font-size:1.25rem;font-weight:700}
+.day p{margin:.25rem 0 0;color:var(--muted);max-width:62ch}
+.day .km{font-family:var(--mono);font-size:.85rem;white-space:nowrap;text-align:right;color:var(--muted)}
+.day .km b{color:var(--ink)}
+.day.today{background:linear-gradient(90deg,color-mix(in srgb,var(--sun) 18%,transparent),transparent);border-radius:8px}
+.chip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;padding:.1rem .45rem;border-radius:99px;border:1px solid var(--line);color:var(--muted);vertical-align:middle;margin-left:.4rem}
+.chip.warn{border-color:var(--coral);color:var(--coral)}
+.chip.now{background:var(--sun);border-color:var(--sun);color:#1b1206}
+.day a.maps{font-size:.85rem}
+/* abas por cidade */
+.days > li > details{border-bottom:1px solid var(--line)}
+.days > li:first-child > details{border-top:1px solid var(--line)}
+.stop summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:5.5rem 1fr auto 2rem;gap:1rem;padding:1rem .25rem;align-items:start;border-radius:8px}
+.stop summary::-webkit-details-marker{display:none}
+.stop summary:hover{background:var(--sea-soft)}
+.stop summary:focus-visible{outline:3px solid var(--sun);outline-offset:-3px}
+.stop .when{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:1.35}
+.stop .when b{display:block;font-size:1.05rem;color:var(--ink)}
+.stop h3{font-size:1.25rem;font-weight:700}
+.stop .stop-head p{margin:.25rem 0 0;color:var(--muted);max-width:62ch}
+.stop .km{font-family:var(--mono);font-size:.85rem;white-space:nowrap;text-align:right;color:var(--muted)}
+.stop .km b{color:var(--ink)}
+.toggle{width:2rem;height:2rem;border-radius:50%;border:1px solid var(--line);background:var(--surface);position:relative;align-self:center}
+.toggle::before,.toggle::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;background:var(--sea);transform:translate(-50%,-50%)}
+.toggle::after{transform:translate(-50%,-50%) rotate(90deg)}
+.stop[open] .toggle::after{transform:translate(-50%,-50%) rotate(0deg)}
+.stop.today summary{background:color-mix(in srgb,var(--sun) 18%,transparent)}
+.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 .25rem 1.25rem 6.75rem}
+.guide .col{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;min-width:0}
+.guide h4{margin:0 0 .5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sea)}
+.guide ul{margin:0;padding-left:1.1rem;display:grid;gap:.35rem;font-size:.95rem}
+.guide ul.eat{list-style:none;padding-left:0}
+.guide ul.eat b{display:block}
+.guide ul.eat span{font-size:.85rem;color:var(--muted)}
+.guide-foot{grid-column:1/-1;font-size:.85rem;color:var(--muted)}
+
+/* Carro */
+.car{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center;margin-top:1.25rem}
+.car svg{width:100%;height:auto;max-width:100%}
+.car-photo{margin:0}
+.car-photo img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+.car-photo figcaption{font-size:.78rem;color:var(--muted);margin-top:.4rem}
+.car-body{fill:var(--car);stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+.car-glass{fill:var(--sea-soft);stroke:var(--ink);stroke-width:2}
+.car-tire{fill:var(--ink)}
+.car-rim{fill:var(--muted)}
+.car-trim{fill:none;stroke:var(--ink);stroke-width:2}
+.car-road{stroke:var(--line);stroke-width:3;stroke-dasharray:18 12}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1.25rem;margin:1rem 0 0}
+.specs dt{color:var(--muted);font-size:.9rem}
+.specs dd{margin:0;font-weight:600}
+
+/* Avisos */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.25rem}
+.tip{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem}
+.tip.alert{border-color:var(--coral)}
+.tip h3{font-size:1.1rem;margin-bottom:.4rem}
+.tip p{margin:.35rem 0 0;font-size:.95rem;color:var(--muted)}
+.tip .src{font-size:.8rem}
+footer{padding-block:2rem 3rem;color:var(--muted);font-size:.85rem}
+
+@media (max-width:760px){
+  .hero-grid,.car{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .tips{grid-template-columns:1fr}
+  .day{grid-template-columns:4.2rem 1fr}
+  .day .km{grid-column:2;text-align:left}
+  .stop summary{grid-template-columns:4.2rem 1fr 2rem}
+  .stop .km{grid-column:2;text-align:left}
+  .stop .toggle{grid-column:3;grid-row:1}
+  .guide{grid-template-columns:1fr;padding-left:.25rem}
+}
+@media (prefers-reduced-motion:no-preference){
+  .map-route{animation:dash 40s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-450}}
+}
+</style>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Costa do Sol Poente · Ceará · março de 2027</div>
+      <h1 class="logo"><span class="logo-a">CASAL</span> <span class="logo-b">na Estrada</span></h1>
+      <div class="crew">
+        <div class="avatars" id="avatars"></div>
+        <div class="crew-names" id="names">Bruno &amp; Clarissa</div>
+      </div>
+      <p class="lede">12 dias de EcoSport branco pela CE-085, de Fortaleza até Jericoacoara, parando em 10 praias.</p>
+    </div>
+    <div class="hero-side">
+    <div class="count" aria-live="polite">
+      <div class="eyebrow" id="countLabel">Faltam para março</div>
+      <div class="big" id="countBig">—</div>
+      <div class="status" id="status">Data a definir</div>
+      <label for="startDate">Data de saída (fica salva só neste aparelho)</label>
+      <input type="date" id="startDate" min="2027-03-01" max="2027-03-31">
+    </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="rota">
+    <div class="sec-head cam-head"><div><div class="eyebrow">A rota</div>
+    <h2>De Fortaleza a Jeri, praia a praia</h2></div><figure class="cam">
+      <video src="casal-carro.mp4" poster="casal-carro.webp" autoplay muted loop playsinline preload="auto" aria-label="Bruno dirigindo o EcoSport e Clarissa no banco do passageiro, com a praia ao fundo"></video>
+      <figcaption class="cam-tag"><i></i>REC · Câmera do painel</figcaption>
+    </figure></div>
+    <div class="console">
+      <div class="sat-wrap">
+        <div class="sat-view" id="satView">
+          <div class="sat-stage" id="satStage">
+            <img src="mapa-satelite.jpg" alt="" width="2048" height="1792" draggable="false">
+            <svg id="satSvg" viewBox="0 0 2048 1792" preserveAspectRatio="xMidYMin slice" role="img" aria-label="Rota sobre imagem de satélite do litoral oeste do Ceará"></svg>
+          </div>
+        </div>
+        <div class="illu-view" id="illuView" hidden><svg id="map" viewBox="0 0 1120 500" role="img" aria-label="Mapa ilustrado do litoral oeste do Ceará com as 11 paradas"></svg></div>
+        <div class="sat-ui sat-badge" id="satBadge"><i></i><span>Largada · Fortaleza, CE</span><small>· aguardando</small></div>
+        <div class="sat-ui sat-toggle" role="group" aria-label="Tipo de mapa">
+          <button type="button" id="btnSat" aria-pressed="true">Satélite</button>
+          <button type="button" id="btnIllu" aria-pressed="false">Mapa</button>
+        </div>
+        <div class="sat-ui sat-zoom">
+          <button type="button" id="zoomIn" aria-label="Aproximar">+</button>
+          <button type="button" id="zoomOut" aria-label="Afastar">−</button>
+        </div>
+        <div class="sat-credit">Imagem: <a href="https://s2maps.eu" target="_blank" rel="noopener">Sentinel-2 cloudless</a> 2020 by EOX IT Services GmbH (dados Copernicus Sentinel modificados), CC BY-NC-SA 4.0</div>
+      </div>
+      <aside class="panel" aria-label="Resumo da viagem">
+        <div class="panel-block">
+          <div class="p-eyebrow">▸ Resumo · Ep. 01</div>
+          <div class="p-title">Litoral Ceará</div>
+          <div class="p-sub" id="pDates">Março de 2027 · 12 dias</div>
+        </div>
+        <div class="panel-block">
+          <div class="p-eyebrow alt">▸ Números da viagem</div>
+          <div class="p-stats" id="pstats"></div>
+        </div>
+        <div class="hazard"></div>
+        <div class="panel-block">
+          <div class="p-eyebrow">▸ Roteiro · Ep. 01</div>
+          <ol class="p-list" id="pList"></ol>
+        </div>
+        <div class="hazard"></div>
+        <div class="p-foot">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.7 19.3 13.6 10.2c.9-2.3.4-5-1.5-6.9C10.1 1.3 7.1.9 4.7 2l4.3 4.3-3 3L1.7 5C.6 7.4 1.1 10.4 3.1 12.4c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.2-2.2c.4-.4.4-1 0-1.5z"/></svg>
+          <span id="pFoot">EcoSport na garagem · saída em março</span>
+        </div>
+      </aside>
+    </div>
+    <p class="caption">Posições aproximadas. Arraste para mover o mapa e use + e − para aproximar.</p>
+  </section>
+
+  <section class="wrap" id="roteiro">
+    <div class="sec-head"><div><div class="eyebrow">Roteiro sugerido</div>
+    <h2>Dia a dia</h2></div><figure class="polaroid" style="--r:-5deg"><div class="ph"><img src="casal-carro.webp" alt="" loading="lazy" style="--z:1.9;--o:22% 45%"></div><figcaption>cadê o mapa?</figcaption></figure></div>
+    <p class="caption">Toque em cada cidade para ver o que fazer, onde comer e as melhores praias. Divisão de noites é sugestão; km aproximados.</p>
+    <ol class="days" id="days"></ol>
+  </section>
+
+  <section class="wrap" id="carro">
+    <div class="sec-head"><div><div class="eyebrow">O carro</div>
+    <h2>EcoSport Titanium 2018, branco</h2></div><figure class="polaroid" style="--r:3deg"><div class="ph"><img src="casal-carro.webp" alt="" loading="lazy" style="--z:1.9;--o:78% 38%"></div><figcaption>piloto oficial</figcaption></figure></div>
+    <div class="car">
+      <figure class="car-photo">
+        <img src="ecosport.jpg" alt="Ford EcoSport branco da mesma geração do nosso" width="1000" height="763">
+        <figcaption>Foto do modelo, não do nosso carro: Elise240SX, <a href="https://commons.wikimedia.org/wiki/File:2018_Ford_EcoSport_SE_in_White_Platinum,_Front_Left,_07-17-2022.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
+      </figure>
+      <div>
+        <p>O EcoSport desta versão tem tração só na frente (4x2). Ele vai bem no asfalto da CE-085, mas deve ficar longe das praias e dunas de areia fofa. Nesses trechos, a ideia é contratar buggy ou jardineira.</p>
+        <dl class="specs">
+          <dt>Motor</dt><dd>2.0 flex, 176 cv</dd>
+          <dt>Câmbio</dt><dd>Automático</dd>
+          <dt>Tração</dt><dd>Dianteira (4x2)</dd>
+          <dt>Cor</dt><dd>Branco</dd>
+          <dt>Trecho total</dt><dd id="carKm">—</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="avisos">
+    <div class="sec-head"><div><div class="eyebrow">Antes de ir</div>
+    <h2>Avisos da rota</h2></div></div>
+    <div class="tips">
+      <article class="tip alert">
+        <h3>Carro não entra em Jeri</h3>
+        <p>Não há circulação de carros na vila. O carro fica num estacionamento na entrada (lado de Jijoca) e o último trecho é de jardineira ou 4x4 até a pousada.</p>
+        <p class="src">Fonte: <a href="https://www.viajenaviagem.com/destino/jericoacoara/como-chegar/" target="_blank" rel="noopener">Viaje na Viagem</a></p>
+      </article>
+      <article class="tip">
+        <h3>Taxa de turismo em Jeri</h3>
+        <p>A TTS de Jijoca de Jericoacoara custava R$ 41,50 por pessoa, válida por 10 dias (valor de 2025). Dá para pagar antes, online, ou na entrada da vila. Confira o valor perto da viagem.</p>
+        <p class="src">Fonte: <a href="https://diariodonordeste.verdesmares.com.br/negocios/justica-barra-cobranca-de-ingresso-e-mantem-acesso-livre-a-vila-de-jericoacoara-1.3701767" target="_blank" rel="noopener">Diário do Nordeste</a></p>
+      </article>
+      <article class="tip">
+        <h3>Março é época de chuva</h3>
+        <p>Fevereiro a maio é a quadra chuvosa do Ceará. As lagoas ficam cheias e bonitas, e o vento é mais fraco que no segundo semestre, que é a alta temporada de kite.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">Feito para a nossa viagem · rota e km aproximados, revisar antes de sair.</footer>
+
+<script>
+/* ===== Configuração da viagem: mude aqui ===== */
+const TRIP = {
+  names: ["Bruno", "Clarissa"],
+  startDate: "2027-03-12",    // saída marcada
+  days: 12,
+  origin: { name: "Fortaleza", lat: -3.732, lon: -38.527 },
+  stops: [
+    { name: "Cumbuco",        lat: -3.627, lon: -38.729, km: 35,  nights: 1, q: "Cumbuco Caucaia CE",
+      text: "Chegada pela costa. Passeio de buggy nas dunas e banho na Lagoa do Banana." },
+    { name: "Taíba",          lat: -3.505, lon: -38.915, km: 35,  nights: 1, q: "Taíba São Gonçalo do Amarante CE",
+      text: "Falésias, coqueiral e praia mais tranquila." },
+    { name: "Paracuru",       lat: -3.410, lon: -39.030, km: 20,  nights: 1, q: "Paracuru CE",
+      text: "Praia da Pedra Rachada e o pôr do sol nas falésias." },
+    { name: "Lagoinha",       lat: -3.322, lon: -39.160, km: 25,  nights: 1, q: "Praia da Lagoinha Paraipaba CE",
+      text: "Mirante sobre a enseada com coqueiros, um dos cartões-postais da costa." },
+    { name: "Trairi",         lat: -3.237, lon: -39.233, km: 30,  nights: 1, q: "Guajiru Trairi CE",
+      text: "Praia do Guajiru e vilas de pescadores ao redor." },
+    { name: "Flecheiras",     lat: -3.219, lon: -39.270, km: 10,  nights: 1, q: "Flecheiras Trairi CE",
+      text: "Piscinas naturais entre os recifes na maré baixa. Vale olhar a tábua de marés." },
+    { name: "Praia da Baleia",lat: -3.080, lon: -39.550, km: 55,  nights: 1, q: "Praia da Baleia Itapipoca CE",
+      text: "Vila de pescadores, mar calmo e pouca gente." },
+    { name: "Icaraizinho de Amontada", lat: -2.945, lon: -39.725, km: 45, nights: 1, q: "Icaraizinho de Amontada CE",
+      text: "Vila pequena, pôr do sol no mar e clima de sossego." },
+    { name: "Preá",           lat: -2.817, lon: -40.410, km: 100, nights: 1, q: "Preá Cruz CE",
+      text: "O trecho mais longo de estrada. Preá é base de kite, colada em Jeri." },
+    { name: "Jericoacoara",   lat: -2.795, lon: -40.513, km: 20,  nights: 3, q: "Jericoacoara CE", warn: "carro fica fora",
+      text: "A última praia. Carro no estacionamento da entrada e jardineira até a vila. Duna do Pôr do Sol, Pedra Furada e Lagoa do Paraíso." }
+  ]
+};
+/* ============================================= */
+
+/* Guia por cidade: [nome, comentário] nos restaurantes */
+const GUIDE = {
+  "Cumbuco": {
+    see: ["Passeio de buggy nas dunas, com ou sem emoção", "Lagoa do Banana, com tirolesa e esqui-bunda", "Lagoa do Parnamirim", "Passeio de jangada no fim da tarde"],
+    eat: [["Muda Restaurante e Bar", "um dos mais caprichados, forte em frutos do mar"], ["Sabor da Praia Steak House", "carnes e frutos do mar, muito bem avaliado"], ["La Juanita", "mistura de cozinha argentina e nordestina"], ["Centrinho", "à noite os restaurantes põem mesas na calçada"]],
+    beach: [["Praia do Cumbuco", "a da vila, com kite e buggy"], ["Barra do Cauípe", "lagoa de kite, mais vazia"], ["Barra Nova", "águas calmas que parecem lagoa"]],
+    src: ["Diário do Nordeste", "https://diariodonordeste.verdesmares.com.br/verso/cumbuco-o-paraiso-litoraneo-cearense-que-reune-todos-os-sabores-do-mundo-1.3380671"]
+  },
+  "Taíba": {
+    see: ["Lagoa da Taíba, ponto de kite", "Falésias e a prainha da Taibinha", "Porto do Pecém, logo ao lado"],
+    eat: [["Petit Bistrot", "perto da praia"], ["Restaurante O Barão", "perto da praia"], ["Barraca Brilho da Lua", "barraca de praia"]],
+    beach: [["Praia da Taíba", "ondas, surf e kite"], ["Taibinha", "a prainha vizinha"], ["Pecém", "águas calmas, boa para banho"]]
+  },
+  "Paracuru": {
+    see: ["Praia da Pedra Rachada", "Pôr do sol nas falésias", "Kite e surf na orla"],
+    eat: [["Rei do Escargot", "clássico da cidade, fundado por um francês, de frente para o mar"], ["Buena Onda", "simples e bem servido; vale reservar"], ["Restaurante Temperos", "comida regional"]],
+    beach: [["Pedra Rachada", "a mais famosa, com kite e pôr do sol"], ["Praia da Bica", "perto do centro"], ["Praia das Almas", "deserta, de paisagem diferente"], ["Piriquara (dos Coqueirais)", "deserta, sem barracas"]],
+    src: ["O Povo", "https://www.opovo.com.br/noticias/especialpublicitario/destinoceara/2025/07/18/sabores-de-paracuru-onde-comer-e-se-encantar-com-a-gastronomia-local.html"]
+  },
+  "Lagoinha": {
+    see: ["Mirante da Lagoinha, com a enseada e os coqueiros", "Dunas e a lagoa que dá nome à praia", "Passeio de buggy"],
+    eat: [["Fullxico", "o mais lembrado por quem conhece Lagoinha"], ["Fateixas", "mesas de frente para o mar"], ["O Dudé à Beira Mar", "barraca e restaurante, muito bem avaliado"]],
+    beach: [["Praia da Lagoinha", "falésias, dunas, coqueiros e mar calmo"], ["Lagoa das Almécegas", "em Pedrinhas, na divisa com Trairi"]],
+    src: ["Diário do Nordeste", "https://diariodonordeste.verdesmares.com.br/estilo-de-vida/viagem/lagoinha-veja-dicas-do-que-fazer-gastronomia-e-locais-para-curtir-na-praia-1.3531305"]
+  },
+  "Trairi": {
+    see: ["Praia do Guajiru, cheia de kites", "Vila de Mundaú e a foz do rio, ali perto", "Vilas de pescadores"],
+    eat: [["Guajiru com Pimenta", "camarão crocante; abre de quarta a segunda"], ["Clube da Prancha", "açaí e hambúrguer"], ["Restaurante da Toinha", "em frente à Pousada Rede Beach"]],
+    beach: [["Guajiru", "calma, cheia de kites"], ["Mundaú", "rio, manguezal e mirante do pôr do sol"], ["Emboaca", "lagoa entre o mar e as dunas, quase deserta"]],
+    src: ["O Povo", "https://www.opovo.com.br/vidaearte/guia-vidaearte/2024/10/18/o-que-tem-para-fazer-em-guajiru-ce-candida-lopes-mostra-melhores-pontos.html"]
+  },
+  "Flecheiras": {
+    see: ["Piscinas naturais na maré baixa (veja a tábua de marés)", "Passeio de jangada", "Centrinho colado na praia"],
+    eat: [["Marítimo Restaurante", "na Av. Beira Mar, o mais bem avaliado"], ["Nônô Restaurante e Pizzaria", "na R. dos Xucurus"], ["Barracas de praia", "sem consumação mínima nem taxa de cadeira"]],
+    beach: [["Flecheiras", "piscinas naturais na maré baixa"], ["Mundaú", "bate-volta com banho de rio"]],
+    src: ["Viciada em Viajar", "https://www.viciadaemviajar.com/onde-ficar-em-flecheiras/"]
+  },
+  "Praia da Baleia": {
+    see: ["Enseada de 4 km com dunas e coqueiral", "Lagoa do Mato, os “Lençóis Baleienses” atrás das dunas", "Vila de pescadores"],
+    eat: [["Altas Horas Beach", "pousada e restaurante pé na areia"], ["Chico do Caranguejo", "a poucos passos da praia"], ["Bar e Restaurante Dú Jaime", "perto da pousada Villa Baleia"]],
+    beach: [["Praia da Baleia", "enseada de 4 km com dunas e coqueiral"], ["Lagoa do Mato", "atrás das dunas"]],
+    src: ["UAI", "https://uai.com.br/cidades/2026/07/10/destino-cearense-que-mistura-25-km-de-praias-serra-a-800-metros-e-fosseis-raros"]
+  },
+  "Icaraizinho de Amontada": {
+    see: ["Pôr do sol na praia com as torres eólicas ao fundo", "Buggy até as vilas de Moitas e Caetanos", "Piscinas naturais e passeio de barco"],
+    eat: [["Restaurante e Pousada Hibisco", "um dos favoritos da vila"], ["Brisa Bistrô", "bistrô na vila"], ["Pasta d'aMare", "massas"]],
+    beach: [["Icaraizinho", "pôr do sol com as eólicas ao fundo"], ["Moitas", "vila vizinha, de buggy"], ["Caetanos", "vila vizinha, de buggy"]],
+    src: ["Diário do Nordeste", "https://diariodonordeste.verdesmares.com.br/estilo-de-vida/viagem/icaraizinho-de-amontada-como-chegar-onde-ficar-e-o-que-fazer-1.3148023"]
+  },
+  "Preá": {
+    see: ["Ver a turma do kite, ou fazer uma aula", "Árvore da Preguiça, no caminho para Jeri", "Jeri fica a 12 km"],
+    eat: [["Quintal do Denis", "abre todo dia, das 18h às 23h"]],
+    beach: [["Praia do Preá", "vila de pescadores, kite e sossego"], ["Jericoacoara", "a poucos quilômetros"]],
+    src: ["Melhores Destinos", "https://guia.melhoresdestinos.com.br/praia-do-prea-jericoacoara.html"]
+  },
+  "Jericoacoara": {
+    see: ["Duna do Pôr do Sol", "Pedra Furada (caminhada pela praia na maré baixa)", "Lagoa do Paraíso, com redes dentro d'água", "Lagoa Azul e Árvore da Preguiça"],
+    eat: [["Tamarindo", "para uma noite especial; não é barato"], ["Romã", "queridinho da vila, preço justo"], ["Pimenta Verde", "pratos com preço acessível"], ["Bistrô Caiçara", "frutos do mar"]],
+    beach: [["Praia Principal", "em frente à vila, com a Duna do Pôr do Sol"], ["Malhada", "caminho a pé para a Pedra Furada"], ["Preá", "a vizinha mais tranquila"]],
+    src: ["CNN Brasil", "https://www.cnnbrasil.com.br/viagemegastronomia/viagem/onde-comer-em-jericoacoara-ceara-restaurantes-na-vila-e-arredores/"]
+  },
+};
+
+const $ = s => document.querySelector(s);
+const STORE = "solpoente.startDate";
+const fmt = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short" });
+const DAY = 864e5;
+
+function loadDate(){
+  try { return localStorage.getItem(STORE) || TRIP.startDate; } catch(e){ return TRIP.startDate; }
+}
+function saveDate(v){
+  try { v ? localStorage.setItem(STORE, v) : localStorage.removeItem(STORE); } catch(e){}
+}
+function parseDate(s){ if(!s) return null; const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); }
+function today(){ const t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+
+/* Expande paradas em dias */
+function buildDays(){
+  const out = []; let n = 1;
+  TRIP.stops.forEach((s, i) => {
+    for(let k = 0; k < s.nights && n <= TRIP.days; k++, n++){
+      out.push({ n, stop: s, idx: i, first: k === 0, from: k === 0 ? (i ? TRIP.stops[i-1].name : TRIP.origin.name) : null });
+    }
+  });
+  return out;
+}
+const DAYS = buildDays();
+const coastKm = TRIP.stops.reduce((a, s) => a + s.km, 0);
+
+function render(){
+  const start = parseDate(loadDate());
+  const t = today();
+  let currentDay = null;
+
+  // Contagem
+  if(start){
+    const diff = Math.round((start - t) / DAY);
+    const end = new Date(start.getTime() + (TRIP.days - 1) * DAY);
+    $("#countLabel").textContent = "Faltam para a saída";
+    if(diff > 0){
+      $("#countBig").innerHTML = `${diff}<small>${diff === 1 ? "dia" : "dias"}</small>`;
+      $("#status").textContent = `Saída em ${fmt.format(start)} · ${TRIP.days} dias na estrada`;
+    } else if(diff > -TRIP.days){
+      currentDay = 1 - diff;
+      const d = DAYS[currentDay - 1];
+      $("#countLabel").textContent = "Estamos na estrada";
+      $("#countBig").innerHTML = `Dia ${currentDay}<small>de ${TRIP.days}</small>`;
+      $("#status").textContent = `Hoje: ${d.stop.name}`;
+    } else {
+      $("#countBig").innerHTML = `Fim<small>da viagem</small>`;
+      $("#status").textContent = "Viagem concluída";
+    }
+  } else {
+    const march = new Date(2027, 2, 1);
+    const diff = Math.max(0, Math.round((march - t) / DAY));
+    $("#countLabel").textContent = "Faltam para março";
+    $("#countBig").innerHTML = `${diff}<small>dias</small>`;
+    $("#status").textContent = "Data de saída a definir";
+  }
+
+  // Números
+  $("#pstats").innerHTML = [
+    [TRIP.days, "dias de viagem"],
+    [TRIP.stops.length, "praias e vilas"],
+    [`~${coastKm}`, "km pela costa"],
+    [start ? `${String(start.getDate()).padStart(2, "0")}/${String(start.getMonth() + 1).padStart(2, "0")}` : "mar", "saída"]
+  ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  $("#carKm").textContent = `~${coastKm} km de Fortaleza a Jeri`;
+
+  // Roteiro: uma aba por cidade, que abre com atrações, restaurantes e comida típica
+  const openSet = new Set([...document.querySelectorAll("#days details[open]")].map(e => e.dataset.idx));
+  $("#days").innerHTML = TRIP.stops.map((s, i) => {
+    const ds = DAYS.filter(d => d.idx === i);
+    if(!ds.length) return "";
+    const a = ds[0].n, b = ds[ds.length - 1].n;
+    const label = a === b ? `Dia ${a}` : `Dias ${a}–${b}`;
+    const dateTxt = start ? [a, b].filter((v, k, arr) => k === 0 || v !== arr[0])
+      .map(n => fmt.format(new Date(start.getTime() + (n - 1) * DAY))).join(" – ") : "";
+    const isToday = currentDay && currentDay >= a && currentDay <= b;
+    const chips = (isToday ? `<span class="chip now">hoje</span>` : "")
+      + (s.warn ? `<span class="chip warn">${s.warn}</span>` : "")
+      + (ds.length > 1 ? `<span class="chip">${ds.length} dias</span>` : "");
+    const from = i ? TRIP.stops[i-1].name : TRIP.origin.name;
+    const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.q);
+    const G = GUIDE[s.name] || {};
+    const list = arr => (arr || []).map(x => Array.isArray(x)
+      ? `<li><b>${x[0]}</b><span>${x[1]}</span></li>` : `<li>${x}</li>`).join("");
+    const isOpen = openSet.has(String(i)) || isToday;
+    return `<li><details class="stop${isToday ? " today" : ""}" data-idx="${i}"${isOpen ? " open" : ""}>
+      <summary>
+        <div class="when"><b>${label}</b>${dateTxt}</div>
+        <div class="stop-head"><h3>${s.name}${chips}</h3><p>${s.text}</p></div>
+        <div class="km"><span>${from} →</span><br><b>${s.km} km</b></div>
+        <span class="toggle" aria-hidden="true"></span>
+      </summary>
+      <div class="guide">
+        <div class="col"><h4>Pontos turísticos</h4><ul>${list(G.see)}</ul></div>
+        <div class="col"><h4>Onde comer</h4><ul class="eat">${list(G.eat)}</ul></div>
+        <div class="col"><h4>Melhores praias</h4><ul class="eat">${list(G.beach)}</ul></div>
+        <div class="guide-foot"><a href="${url}" target="_blank" rel="noopener">Ver ${s.name} no mapa</a>
+          ${G.src ? ` · Leia mais: <a href="${G.src[1]}" target="_blank" rel="noopener">${G.src[0]}</a>` : ""}
+          · Confira horários antes de ir.</div>
+      </div>
+    </details></li>`;
+  }).join("");
+
+  const hereIdx = currentDay ? DAYS[currentDay - 1].idx : null;
+  drawMap(hereIdx);
+  drawSat(hereIdx);
+  renderPanel(start, currentDay, hereIdx);
+}
+
+/* ===== Mapa ilustrado (plano) ===== */
+const MAP = { W: 1120, H: 500, LON0: -41.0, LAT0: -2.62, K: 400, ROAD_DY: 12 };
+const P = (lat, lon) => [ (lon - MAP.LON0) * MAP.K, (MAP.LAT0 - lat) * MAP.K ];
+const f1 = v => v.toFixed(1);
+// curva suave (Catmull-Rom → Bézier)
+function smooth(pts){
+  let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`;
+  for(let i = 0; i < pts.length - 1; i++){
+    const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+    const c1 = [p1[0] + (p2[0]-p0[0])/6, p1[1] + (p2[1]-p0[1])/6];
+    const c2 = [p2[0] - (p3[0]-p1[0])/6, p2[1] - (p3[1]-p1[1])/6];
+    d += ` C${f1(c1[0])},${f1(c1[1])} ${f1(c2[0])},${f1(c2[1])} ${f1(p2[0])},${f1(p2[1])}`;
+  }
+  return d;
+}
+const COAST = [[-2.90,-41.2],[-2.88,-40.84],[-2.80,-40.66],[-2.775,-40.51],[-2.80,-40.41],[-2.86,-40.12],
+  [-2.92,-39.92],[-2.925,-39.72],[-3.06,-39.55],[-3.20,-39.27],[-3.22,-39.23],[-3.30,-39.16],
+  [-3.395,-39.03],[-3.49,-38.91],[-3.61,-38.73],[-3.705,-38.52],[-3.69,-38.2]].map(([a,b]) => P(a,b));
+function coastY(x){
+  for(let i = 0; i < COAST.length - 1; i++){
+    const [x0,y0] = COAST[i], [x1,y1] = COAST[i+1];
+    if(x >= x0 && x <= x1) return y0 + (y1-y0) * (x-x0) / (x1-x0);
+  }
+  return MAP.H;
+}
+function palm(x, y){
+  return `<g transform="translate(${f1(x)},${f1(y)})">
+    <path class="map-palm-trunk" d="M0,0 Q2,-9 -1,-18"/>
+    <path class="map-palm-leaf" d="M-1,-18 Q-10,-24 -16,-16 Q-8,-19 -1,-18Z"/>
+    <path class="map-palm-leaf" d="M-1,-18 Q8,-25 15,-17 Q7,-20 -1,-18Z"/>
+    <path class="map-palm-leaf" d="M-1,-18 Q-3,-28 4,-30 Q0,-24 -1,-18Z"/></g>`;
+}
+function dune(x, y, r){ return `<path class="map-dune" d="M${f1(x-r)},${f1(y)} A${r},${r*0.55} 0 0 1 ${f1(x+r)},${f1(y)} Z"/>`; }
+function pin(x, y, n, here){
+  return `<path class="map-pin${here ? " here" : ""}" d="M${f1(x)},${f1(y)} L${f1(x-7)},${f1(y-12)} A9.5,9.5 0 1 1 ${f1(x+7)},${f1(y-12)} Z"/>
+    <text class="map-num" x="${f1(x)}" y="${f1(y-14.5)}">${n}</text>`;
+}
+// EcoSport visto de lado, frente para a esquerda (rumo à rota)
+function carSVG(x, y, s){
+  return `<g transform="translate(${f1(x)},${f1(y)}) scale(${s})">
+    <ellipse cx="207" cy="176" rx="180" ry="9" fill="rgba(0,0,0,.18)"/>
+    <path class="car-body" d="M40 140 L40 112 Q42 98 58 94 L110 88 L150 52 Q158 44 172 44 L292 44 Q306 44 312 54 L340 92 L362 98 Q374 102 374 116 L374 140 Q374 148 366 148 L54 148 Q40 148 40 140 Z"/>
+    <path class="car-glass" d="M122 88 L156 56 Q160 52 168 52 L222 52 L222 88 Z"/>
+    <path class="car-glass" d="M232 52 L288 52 Q298 52 302 58 L326 88 L232 88 Z"/>
+    <rect class="car-body" x="368" y="96" width="18" height="44" rx="6"/>
+    <path class="car-trim" d="M60 118 L360 118"/>
+    <rect x="150" y="34" width="150" height="6" rx="3" fill="var(--ink)"/>
+    <circle class="car-tire" cx="104" cy="150" r="27"/><circle class="car-rim" cx="104" cy="150" r="13"/>
+    <circle class="car-tire" cx="314" cy="150" r="27"/><circle class="car-rim" cx="314" cy="150" r="13"/>
+    <circle cx="52" cy="108" r="6" fill="var(--sun)"/>
+    <rect x="364" y="104" width="8" height="10" rx="2" fill="var(--coral)"/>
+  </g>`;
+}
+
+function drawMap(hereIdx){
+  const { W, H, K, ROAD_DY } = MAP;
+  const coastD = smooth(COAST);
+  const all = [TRIP.origin, ...TRIP.stops];
+  const pts = all.map(s => { const [x, y] = P(s.lat, s.lon); return [x, y + ROAD_DY]; });
+  const roadD = smooth(pts);
+  const last = pts[pts.length - 1], home = pts[0];
+  const backD = `M${f1(last[0])},${f1(last[1])} Q560,575 ${f1(home[0])},${f1(home[1])}`;
+
+  // ondas no mar, fora da área do título
+  let waves = "";
+  for(let y = 24; y < H; y += 34){
+    for(let x = 20 + (y % 68 ? 40 : 0); x < W; x += 92){
+      if(y > coastY(x + 12) - 26) continue;
+      if(x > 500 && x < 920 && y > 50 && y < 100) continue;
+      waves += `<path class="map-wave" d="M${x},${y} q6,-5 12,0 t12,0"/>`;
+    }
+  }
+
+  // rótulos: [deslocamento y, âncora, deslocamento x, no mar?]
+  const L = [
+    [  4, "end",   -14, false], // Fortaleza
+    [ 18, "middle",  0, false], // Cumbuco
+    [-28, "middle",  0, true ], // Taíba
+    [ 18, "middle",  0, false], // Paracuru
+    [ -4, "start",  14, true ], // Lagoinha
+    [ 14, "end",   -12, false], // Trairi
+    [-28, "end",    -6, true ], // Flecheiras
+    [ 18, "middle",  0, false], // Baleia
+    [-28, "middle",  0, true ], // Icaraizinho
+    [ 18, "start",   4, false], // Preá
+    [-28, "middle",  0, true ]  // Jeri
+  ];
+
+  let g = `<rect class="map-sea" x="0" y="0" width="${W}" height="${H}"/>
+    ${waves}
+    <path class="map-beach" d="${coastD}"/>
+    <path class="map-land" d="${coastD} L${W},${H} L0,${H} Z"/>
+    <text class="map-sea-label" x="540" y="82">OCEANO ATLÂNTICO</text>`;
+
+  // dunas, lagoas e coqueiros
+  [[-2.84,-40.47,24],[-2.83,-40.57,18],[-2.86,-40.38,16],[-3.66,-38.77,20],[-3.55,-38.95,14]]
+    .forEach(([a,b,r]) => { const [x,y] = P(a,b); g += dune(x, y + 14, r); });
+  [[-2.92,-40.47,14,6],[-3.69,-38.80,10,5]]
+    .forEach(([a,b,rx,ry]) => { const [x,y] = P(a,b); g += `<ellipse class="map-lagoon" cx="${f1(x)}" cy="${f1(y+12)}" rx="${rx}" ry="${ry}"/>`; });
+  [[-3.37,-39.18],[-2.98,-39.76],[-3.55,-38.88],[-2.95,-40.88],[-3.13,-39.50],[-3.45,-39.02],[-2.89,-40.20]]
+    .forEach(([a,b]) => { const [x,y] = P(a,b); g += palm(x, y + 34); });
+
+  // estrada
+  g += `
+    <path class="map-road-casing" d="${roadD}"/>
+    <path class="map-road" d="${roadD}"/>
+    <path class="map-road-center" d="${roadD}"/>`;
+
+  // placa CE-085
+  const [sx, sy] = P(-3.02, -39.66);
+  g += `<rect class="map-shield" x="${f1(sx-24)}" y="${f1(sy+30)}" width="48" height="18" rx="4"/>
+    <text class="map-shield-text" x="${f1(sx)}" y="${f1(sy+43)}">CE-085</text>`;
+
+  // paradas
+  all.forEach((s, i) => {
+    const [x, y] = pts[i];
+    const [dy, anchor, dx, sea] = L[i];
+    const short = i === 0 ? "Fortaleza" : s.name.replace(" de Amontada", "").replace("Praia da ", "");
+    if(i) g += pin(x, y, i, hereIdx === i - 1);
+    else g += `<circle cx="${f1(x)}" cy="${f1(y)}" r="7" fill="var(--sea)" stroke="var(--surface)" stroke-width="2.5"/>`;
+    g += `<text class="map-label${sea ? " sea" : ""}" x="${f1(x + dx)}" y="${f1(y + dy)}" text-anchor="${anchor}">${short}</text>`;
+  });
+
+  // EcoSport pronto para sair de Fortaleza
+  if(hereIdx === null){
+    g += carSVG(home[0] + 6, home[1] - 30, 0.19);
+    g += `<rect class="map-tag" x="${f1(home[0] + 12)}" y="${f1(home[1] - 50)}" width="62" height="17" rx="8.5"/>
+      <text class="map-tag-text" x="${f1(home[0] + 43)}" y="${f1(home[1] - 38)}" text-anchor="middle">PARTIDA</text>`;
+  }
+
+  // escala e norte
+  const s0 = 40, s1 = s0 + 0.45 * K;
+  g += `<line class="map-tick" x1="${s0}" y1="${H-24}" x2="${s1}" y2="${H-24}"/>
+    <line class="map-tick" x1="${s0}" y1="${H-29}" x2="${s0}" y2="${H-19}"/>
+    <line class="map-tick" x1="${s1}" y1="${H-29}" x2="${s1}" y2="${H-19}"/>
+    <text class="map-note" x="${s0}" y="${H-34}">50 km</text>
+    <g transform="translate(${W-40},40)"><path d="M0,-18 L7,6 L0,1 L-7,6Z" fill="var(--ink)"/>
+    <text class="map-note" x="0" y="22" text-anchor="middle">N</text></g>`;
+  $("#map").innerHTML = g;
+}
+
+/* ===== Mapa satélite (imagem 2048×1792, Web Mercator z10, tiles x 395–402, y 519–525) ===== */
+function SP(lat, lon){
+  const x = ((lon + 180) / 360 * 1024 - 395) * 256;
+  const s = Math.sin(lat * Math.PI / 180);
+  const y = ((0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * 1024 - 519) * 256;
+  return [x, y];
+}
+// posição da etiqueta de cada parada [dx, dy] (Fortaleza, depois a ordem das paradas)
+const SAT_BOX = [[60,-70],[60,-60],[120,-40],[125,-45],[130,-55],[95,-95],[-40,-110],[40,-90],[0,-90],[80,-95],[-60,-115]];
+function carTop(x, y, s){
+  return `<g transform="translate(${f1(x)},${f1(y)}) scale(${s})">
+    <ellipse cx="4" cy="6" rx="70" ry="34" fill="rgba(0,0,0,.45)"/>
+    <rect x="-62" y="-30" width="124" height="60" rx="17" fill="#f7f9fa" stroke="#1b2a30" stroke-width="3"/>
+    <path d="M-30,-25 L-14,-22 L-14,22 L-30,25 Q-36,0 -30,-25Z" fill="#20323b"/>
+    <path d="M30,-22 L40,-24 Q45,0 40,24 L30,22Z" fill="#20323b"/>
+    <rect x="-12" y="-23" width="40" height="46" rx="6" fill="#eef2f3" stroke="#c9d3d6" stroke-width="2"/>
+    <line x1="-8" y1="-25" x2="26" y2="-25" stroke="#1b2a30" stroke-width="3"/><line x1="-8" y1="25" x2="26" y2="25" stroke="#1b2a30" stroke-width="3"/>
+    <rect x="-24" y="-38" width="10" height="8" rx="2" fill="#f7f9fa" stroke="#1b2a30" stroke-width="2"/>
+    <rect x="-24" y="30" width="10" height="8" rx="2" fill="#f7f9fa" stroke="#1b2a30" stroke-width="2"/>
+    <rect x="-62" y="-24" width="6" height="12" rx="2" fill="#ffd23f"/><rect x="-62" y="12" width="6" height="12" rx="2" fill="#ffd23f"/>
+    <rect x="60" y="-14" width="12" height="28" rx="5" fill="#1b2a30"/>
+  </g>`;
+}
+function photoBubble(href, x, y, r, id){
+  return `<clipPath id="${id}"><circle cx="${f1(x)}" cy="${f1(y)}" r="${r}"/></clipPath>
+    <circle cx="${f1(x)}" cy="${f1(y)}" r="${r + 5}" fill="#ffffff" stroke="#1b2a30" stroke-width="3"/>
+    <image href="${href}" x="${f1(x - r)}" y="${f1(y - r)}" width="${2 * r}" height="${2 * r}" clip-path="url(#${id})" preserveAspectRatio="xMidYMid slice"/>`;
+}
+function satBox(x, y, text, cls){
+  const w = text.length * 14 + 30, h = 38;
+  return `<rect class="sat-box${cls ? " " + cls : ""}" x="${f1(x - w / 2)}" y="${f1(y - h / 2)}" width="${w}" height="${h}" rx="3"/>
+    <text class="sat-box-text" x="${f1(x)}" y="${f1(y + 7)}">${text}</text>`;
+}
+function drawSat(hereIdx){
+  const all = [TRIP.origin, ...TRIP.stops];
+  const pts = all.map(s => SP(s.lat, s.lon));
+  const routeD = smooth(pts);
+  const last = pts[pts.length - 1], home = pts[0];
+  const backD = `M${f1(last[0])},${f1(last[1])} Q1150,1180 ${f1(home[0])},${f1(home[1])}`;
+  let g = `
+    <path class="sat-route-glow" d="${routeD}"/><path class="sat-route" d="${routeD}"/>`;
+  all.forEach((s, i) => {
+    const [x, y] = pts[i];
+    const [dx, dy] = SAT_BOX[i];
+    const name = (i === 0 ? "Fortaleza" : s.name.replace(" de Amontada", "").replace("Praia da ", "")).toUpperCase();
+    const bx = x + dx, by = y + dy;
+    g += `<line class="sat-leader" x1="${f1(x)}" y1="${f1(y - 30)}" x2="${f1(bx)}" y2="${f1(by + 19)}"/>`;
+    g += `<line class="sat-flag-pole" x1="${f1(x)}" y1="${f1(y)}" x2="${f1(x)}" y2="${f1(y - 34)}"/>
+      <path class="sat-flag" d="M${f1(x)},${f1(y - 34)} l24,7 l-24,8 Z"${hereIdx === i - 1 ? ' style="fill:#ffd23f"' : ""}/>`;
+    g += satBox(bx, by, name, i === all.length - 1 ? "end" : "");
+  });
+  // EcoSport + nós dois, prontos para sair
+  if(hereIdx === null){
+    // logo abaixo de Fortaleza
+    const cx = home[0] - 40, cy = home[1] + 85;
+    g += carTop(cx, cy, 1);
+    g += photoBubble("bruno.jpg", cx - 108, cy, 34, "pb1");
+    g += photoBubble("clarissa.jpg", cx + 108, cy, 34, "pb2");
+    g += `<rect class="sat-pit" x="${f1(cx - 70)}" y="${f1(cy + 48)}" width="140" height="38" rx="3"/>
+      <text class="sat-pit-text" x="${f1(cx)}" y="${f1(cy + 74)}">PARTIDA</text>`;
+  }
+  $("#satSvg").innerHTML = g;
+}
+
+function renderPanel(start, currentDay, hereIdx){
+  const all = [TRIP.origin, ...TRIP.stops];
+  if(start){
+    const end = new Date(start.getTime() + (TRIP.days - 1) * DAY);
+    $("#pDates").textContent = `${fmt.format(start)} → ${fmt.format(end)} · ${TRIP.days} dias`;
+  }
+  $("#pList").innerHTML = all.map((s, i) => {
+    const name = i === 0 ? "Fortaleza" : s.name.replace(" de Amontada", "");
+    const icon = i === 0 ? "▸ " : (i === all.length - 1 ? "⚑ " : "");
+    const here = hereIdx === i - 1 && i > 0;
+    return `<li><button type="button" data-go="${i - 1}"><span class="n">${String(i).padStart(2, "0")}</span>
+      <span class="${here ? "here" : ""}">${icon}${name} <span class="uf">· CE</span></span></button></li>`;
+  }).join("");
+  const badge = $("#satBadge");
+  if(hereIdx !== null){
+    badge.innerHTML = `<i></i><span>Na estrada · ${TRIP.stops[hereIdx].name}</span><small>· dia ${currentDay}</small>`;
+    $("#pFoot").textContent = `Dia ${currentDay} de ${TRIP.days} · rumo a Jeri`;
+  } else {
+    badge.innerHTML = `<i></i><span>Largada · Fortaleza, CE</span><small>· aguardando</small>`;
+    $("#pFoot").textContent = start ? `EcoSport na garagem · saída ${fmt.format(start)}` : "EcoSport na garagem · saída em março";
+  }
+}
+
+function setupSat(){
+  const view = $("#satView"), stage = $("#satStage"), illu = $("#illuView");
+  const Z = [1, 1.5, 2, 3];
+  let zi = 0;
+  function apply(keepCenter){
+    const cxr = (view.scrollLeft + view.clientWidth / 2) / Math.max(1, stage.offsetWidth);
+    const cyr = (view.scrollTop + view.clientHeight / 2) / Math.max(1, stage.offsetHeight);
+    stage.style.width = (Z[zi] * 100) + "%";
+    if(keepCenter){
+      view.scrollLeft = cxr * stage.offsetWidth - view.clientWidth / 2;
+      view.scrollTop = cyr * stage.offsetHeight - view.clientHeight / 2;
+    }
+  }
+  apply(false);
+  // começa mostrando Fortaleza (lado direito, na faixa da costa)
+  view.scrollLeft = view.scrollWidth;
+  view.scrollTop = Math.max(0, stage.offsetHeight * 0.52 - view.clientHeight * 0.75);
+  window.addEventListener("resize", () => apply(true));
+  $("#zoomIn").onclick =() => { if(zi < Z.length - 1){ zi++; apply(true); } };
+  $("#zoomOut").onclick = () => { if(zi > 0){ zi--; apply(true); } };
+  // arrastar com o mouse
+  let drag = null;
+  view.addEventListener("pointerdown", e => {
+    if(e.pointerType !== "mouse") return;
+    drag = { x: e.clientX, y: e.clientY, l: view.scrollLeft, t: view.scrollTop };
+    view.classList.add("drag"); view.setPointerCapture(e.pointerId);
+  });
+  view.addEventListener("pointermove", e => {
+    if(!drag) return;
+    view.scrollLeft = drag.l - (e.clientX - drag.x);
+    view.scrollTop = drag.t - (e.clientY - drag.y);
+  });
+  const end = () => { drag = null; view.classList.remove("drag"); };
+  view.addEventListener("pointerup", end); view.addEventListener("pointercancel", end);
+  // satélite × mapa ilustrado
+  const setMode = sat => {
+    view.hidden = !sat; illu.hidden = sat;
+    $("#btnSat").setAttribute("aria-pressed", sat); $("#btnIllu").setAttribute("aria-pressed", !sat);
+    if(!sat) illu.scrollLeft = illu.scrollWidth;
+  };
+  $("#btnSat").onclick = () => setMode(true);
+  $("#btnIllu").onclick = () => setMode(false);
+  // roteiro do painel abre a aba da cidade
+  $("#pList").addEventListener("click", e => {
+    const b = e.target.closest("button[data-go]"); if(!b) return;
+    const i = +b.dataset.go;
+    if(i < 0){ $("#roteiro").scrollIntoView({ behavior: "smooth" }); return; }
+    const d = document.querySelector(`#days details[data-idx="${i}"]`);
+    if(d){ d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  });
+}
+
+// Data
+const input = $("#startDate");
+input.value = loadDate() || "";
+input.addEventListener("change", () => { saveDate(input.value); render(); });
+$("#names").textContent = `${TRIP.names[0]} & ${TRIP.names[1]}`;
+$("#avatars").innerHTML = `<img src="bruno.jpg" alt="Bruno" width="64" height="64"><img src="clarissa.jpg" alt="Clarissa" width="64" height="64">`;
+setupSat();
+render();
+</script>
+
+</body>
+</html>
